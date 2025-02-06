@@ -307,63 +307,81 @@ function App() {
         </div>
       )}
 
-      {currentPage === 'songs' && (
-        <div 
-          className="fixed inset-0 bg-black/30 flex items-center justify-center p-4 z-50"
-          onClick={() => setCurrentPage('our-story')}
-        >
-          <div 
-            className="bg-white/90 rounded-2xl p-8 shadow-xl max-w-3xl w-full text-center relative overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF0080] to-pink-500 mb-8">
-              Songs For You 💗
-            </h2>
+{currentPage === 'songs' && (
+  <div 
+    className="fixed inset-0 bg-black/30 flex items-center justify-center p-4 z-50"
+    onClick={() => setCurrentPage('our-story')}
+  >
+    <div 
+      className="bg-white/90 rounded-2xl p-8 shadow-xl max-w-3xl w-full text-center relative overflow-hidden"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF0080] to-pink-500 mb-8">
+        Songs For You 💗
+      </h2>
 
-            <div className="flex flex-col md:flex-row gap-6 justify-center">
-              <div className="flex-1 bg-[#e3ccf8] rounded-lg p-6 min-w-[300px] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="flex flex-col items-center">
-                  <h3 className="text-xl font-semibold text-pink-600 mb-2">Apna Bana Le</h3>
-                  <p className="text-purple-500 mb-4">by Arijit Singh</p>
-                  <button 
-                    onClick={() => handleAudioPlay('song1')}
-                    className="px-6 py-2 bg-pink-500 text-white rounded-full flex items-center gap-2 hover:bg-pink-600 transition-colors"
-                  >
-                    {currentAudio === 'song1' ? (
-                      <Pause className="w-4 h-4" />
-                    ) : (
-                      <Music className="w-4 h-4" />
-                    )}
-                    {currentAudio === 'song1' ? 'Pause' : 'Play'}
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex-1 bg-[#ecd3e0] rounded-lg p-6 min-w-[300px] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="flex flex-col items-center">
-                  <h3 className="text-xl font-semibold text-purple-600 mb-2">Raabta</h3>
-                  <p className="text-pink-500 mb-4">by Arijit Singh</p>
-                  <button 
-                    onClick={() => handleAudioPlay('song2')}
-                    className="px-6 py-2 bg-purple-500 text-white rounded-full flex items-center gap-2 hover:bg-purple-600 transition-colors"
-                  >
-                    {currentAudio === 'song2' ? (
-                      <Pause className="w-4 h-4" />
-                    ) : (
-                      <Music className="w-4 h-4" />
-                    )}
-                    {currentAudio === 'song2' ? 'Pause' : 'Play'}
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <p className="mt-8 text-gray-600 text-sm">
-              Made with ❤️ For You!
+      {/* Current Playing Song Info Card - placed above the song cards */}
+      {currentAudio && (
+        <div className="bg-[#e1e7db] p-6 rounded-2xl  max-w-md w-full mb-8 mx-auto shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div className="flex items-center justify-center mt-2">
+            {currentAudio === 'song1' ? (
+              <img src="/song1-image-url.jpg" alt="Apna Bana Le" className="w-20 h-20 object-cover rounded-full mr-4" />
+            ) : (
+              <img src="/song2-image-url.jpg" alt="Raabta" className="w-20 h-20 object-cover rounded-full mr-4" />
+            )}
+            <p className="text-center font-thin text-sm text-gray-600">
+              {currentAudio === 'song1' ? 'Currently playing Apna Bana Le' : 'Currently playing Raabta'}
             </p>
           </div>
         </div>
       )}
+
+      {/* Song Cards */}
+      <div className="flex flex-col md:flex-row gap-6 justify-center">
+        <div className="flex-1 bg-[#e3ccf8] rounded-lg p-6 min-w-[300px] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-semibold text-pink-600 mb-2">Apna Bana Le</h3>
+            <p className="text-purple-500 mb-4">by Arijit Singh</p>
+            <button 
+              onClick={() => handleAudioPlay('song1')}
+              className="px-6 py-2 bg-pink-500 text-white rounded-full flex items-center gap-2 hover:bg-pink-600 transition-colors"
+            >
+              {currentAudio === 'song1' ? (
+                <Pause className="w-4 h-4" />
+              ) : (
+                <Music className="w-4 h-4" />
+              )}
+              {currentAudio === 'song1' ? 'Pause' : 'Play'}
+            </button>
+          </div>
+        </div>
+
+        <div className="flex-1 bg-[#ecd3e0] rounded-lg p-6 min-w-[300px] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-semibold text-purple-600 mb-2">Raabta</h3>
+            <p className="text-pink-500 mb-4">by Arijit Singh</p>
+            <button 
+              onClick={() => handleAudioPlay('song2')}
+              className="px-6 py-2 bg-purple-500 text-white rounded-full flex items-center gap-2 hover:bg-purple-600 transition-colors"
+            >
+              {currentAudio === 'song2' ? (
+                <Pause className="w-4 h-4" />
+              ) : (
+                <Music className="w-4 h-4" />
+              )}
+              {currentAudio === 'song2' ? 'Pause' : 'Play'}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-8 text-gray-600 text-sm">
+        Made with ❤️ For You!
+      </p>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
